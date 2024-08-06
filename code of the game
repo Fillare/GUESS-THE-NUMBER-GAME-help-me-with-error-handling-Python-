@@ -1,0 +1,43 @@
+import random
+def guess_game():
+    try:
+        start_nmbr=int(input('start number: '))
+        end_nmbr=int(input('end number: '))
+
+        count=0
+        print('you have only 7 tries to guess the number between',start_nmbr,'and',end_nmbr)
+
+        ran_nmbr=random.randint(start_nmbr, end_nmbr)
+        
+        while True:
+            count+=1
+            if count>7:
+                print('you lose the number was', ran_nmbr)
+                break
+
+            gues_nmbr=int(input(f'guess a number its your {count} try: '))
+
+            if ran_nmbr==gues_nmbr:
+                print (f'you guessed it right in your {count} try , it was {ran_nmbr}')
+
+                play_again=str(input('play again ? :'))
+                if play_again.lower()=='no':
+                    break
+                else:
+                    guess_game()
+
+
+            if ran_nmbr>gues_nmbr:
+                print('think higher')  
+
+            if abs(ran_nmbr-gues_nmbr)<=3:
+                print('you are close!!')
+
+            if ran_nmbr<gues_nmbr:
+                print('think lower')
+
+    except:
+        if start_nmbr and end_nmbr and gues_nmbr!=int:
+            raise ValueError('invalid input')
+
+print(guess_game())
